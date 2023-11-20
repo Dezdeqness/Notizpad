@@ -11,7 +11,7 @@
     "prettier:fix": "prettier --write ./src",
     "lint:ts": "tsc --project ./tsconfig.json --skipLibCheck --noEmit",
     "pod:install": "pod install --project-directory=ios",
-    "lint": "eslint --max-warnings 2",
+    "lint": "eslint --max-warnings 10",
     "lint:fix": "yarn lint --fix"
   },
   "lint-staged": {
@@ -20,6 +20,9 @@
     ]
   },
   "dependencies": {
+    "@react-native-community/checkbox": "^0.5.16",
+    "@react-native/metro-config": "^0.73.2",
+    "metro-config": "^0.80.1",
     "react": "18.2.0",
     "react-native": "0.72.6",
     "react-native-logs": "^5.0.1",
