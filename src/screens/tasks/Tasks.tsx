@@ -1,5 +1,5 @@
 import { FlatList, StatusBar, Text, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { PrimaryButton, SelectableButton } from '../../components';
 import { TaskCard } from './components/';
 import { taskData } from '../../mock/task-list';
@@ -11,15 +11,18 @@ export const Tasks: React.FC<TasksScreenProps> = ({ navigation }) => {
   const [tasks, setList] = useState(taskData);
   const [status, setStatus] = useState(FilterStatus.All);
 
-  const filteredList = tasks.filter(filterValue => {
-    if (status == FilterStatus.Active) {
-      return !filterValue.isCompleted;
+  const filterTasks = () => {
+    switch (status) {
+      case FilterStatus.Active:
+        return tasks.filter(task => !task.isCompleted);
+      case FilterStatus.Completed:
+        return tasks.filter(task => task.isCompleted);
+      default:
+        return tasks;
     }
-    if (status == FilterStatus.Completed) {
-      return filterValue.isCompleted;
-    }
-    return true;
-  });
+  };
+
+  const filteredList = useMemo(() => filterTasks(), [tasks, status]);
 
   return (
     <View

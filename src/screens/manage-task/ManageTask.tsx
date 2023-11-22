@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import { View, Text } from 'react-native';
 import { useBottomBarVisibleContext } from '../../navigation/RootNavigator';
 import { ManageTaskScreenProps } from '../../navigation/tasks.types';
@@ -6,7 +6,7 @@ import { ManageTaskScreenProps } from '../../navigation/tasks.types';
 export const ManageTask: React.FC<ManageTaskScreenProps> = ({ route }) => {
   const { updateValueInRoot } = useBottomBarVisibleContext();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     updateValueInRoot('none');
 
     return () => {
