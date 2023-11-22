@@ -6,9 +6,6 @@ import React, {
 } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { TabNavigator } from './TabNavigator';
-import { logger } from 'react-native-logs';
-
-const log = logger.createLogger();
 
 interface BottomBarVisibleContextProps {
   valueInRoot: 'flex' | 'none';
@@ -30,10 +27,7 @@ export const BottomBarVisibleProvider: React.FC<PropsWithChildren> = ({
   children,
 }) => {
   const [valueInRoot, setValueInRoot] = useState<'flex' | 'none'>('flex');
-  log.info('BottomBarVisibleProvider ' + valueInRoot);
   const updateValueInRoot = (newValue: 'flex' | 'none') => {
-    log.info('updateValueInRoot ' + valueInRoot);
-
     setValueInRoot(newValue);
   };
 
