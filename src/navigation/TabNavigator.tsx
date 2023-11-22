@@ -2,7 +2,6 @@ import React from 'react';
 import { Routes } from '../routes';
 import { Map } from '../screens/map/Map';
 import { Generator } from '../screens/generator/Generator';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import {
   GeneratorSelected,
   GeneratorUnselected,
@@ -14,6 +13,7 @@ import {
 import { useTheme } from 'react-native-paper';
 import { TasksNavigator } from './TasksNavigator';
 import { useBottomBarVisibleContext } from './RootNavigator';
+import { createMaterialBottomTabNavigator } from 'react-native-paper/react-navigation';
 
 const Tab = createMaterialBottomTabNavigator();
 

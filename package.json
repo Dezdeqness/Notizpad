@@ -22,7 +22,6 @@
   "dependencies": {
     "@react-native-community/checkbox": "^0.5.16",
     "@react-native/metro-config": "^0.73.2",
-    "@react-navigation/material-bottom-tabs": "^6.2.19",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.17",
     "metro-config": "^0.80.1",
