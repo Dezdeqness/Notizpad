@@ -5,8 +5,9 @@ import { TaskCard } from './components/';
 import { taskData } from '../../mock/task-list';
 import { FilterStatus } from '../../model/task';
 import { styles } from './tasks.styles';
+import { TasksScreenProps } from '../../navigation/tasks.types';
 
-export const Tasks: React.FC = () => {
+export const Tasks: React.FC<TasksScreenProps> = ({ navigation }) => {
   const [tasks, setList] = useState(taskData);
   const [status, setStatus] = useState(FilterStatus.All);
 
@@ -44,7 +45,14 @@ export const Tasks: React.FC = () => {
           }}
         >
           <Text style={styles.title}>Hello, there</Text>
-          <PrimaryButton onPress={() => {}} backgroundColor={'#F8D94F'}>
+          <PrimaryButton
+            onPress={() => {
+              navigation.navigate('ManageTask', {
+                id: -1,
+              });
+            }}
+            backgroundColor={'#F8D94F'}
+          >
             <Text style={styles.buttonText}>+ Add task</Text>
           </PrimaryButton>
         </View>

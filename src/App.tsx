@@ -1,9 +1,13 @@
 import React from 'react';
-
-import { Tasks } from './screens';
+import { RootNavigator } from './navigation/RootNavigator';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 function App() {
-  return <Tasks></Tasks>;
+  return (
+    <SafeAreaProvider>
+      <RootNavigator />
+    </SafeAreaProvider>
+  );
 }
 
 export default App;

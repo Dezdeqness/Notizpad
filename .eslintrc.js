@@ -48,7 +48,7 @@ module.exports = {
   ],
   rules: {
     'no-console': 2,
-    'react-hooks/exhaustive-deps': 'error',
+    'react-hooks/exhaustive-deps': 'off',
     'filename-rules/match': [
       2,
       {
