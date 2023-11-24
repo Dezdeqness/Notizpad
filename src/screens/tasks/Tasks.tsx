@@ -31,7 +31,6 @@ export const Tasks: React.FC<TasksScreenProps> = ({ navigation }) => {
         backgroundColor: '#F8FAFF',
       }}
     >
-      <StatusBar animated={true} backgroundColor={'#6871EE'} />
       <View
         style={{
           backgroundColor: '#6871EE',
