@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>667391723468-om3cave25sprgof7jdmv6ttakkmn7kv0.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.667391723468-om3cave25sprgof7jdmv6ttakkmn7kv0</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>667391723468-th5ckjt5mmequ8tbtnl9cscbm95nbj8e.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDhT_5PYaEMTsmfKv4gf_s-ytOhz5E9m5w</string>
+	<key>GCM_SENDER_ID</key>
+	<string>667391723468</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.Notizpad</string>
+	<key>PROJECT_ID</key>
+	<string>notizpad-ca832</string>
+	<key>STORAGE_BUCKET</key>
+	<string>notizpad-ca832.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:667391723468:ios:c52418e647bcc63e7ebf69</string>
+</dict>
+</plist>

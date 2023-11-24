@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "667391723468",
+    "project_id": "notizpad-ca832",
+    "storage_bucket": "notizpad-ca832.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667391723468:android:93abfdb3f2a829557ebf69",
+        "android_client_info": {
+          "package_name": "com.notizpad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "667391723468-th5ckjt5mmequ8tbtnl9cscbm95nbj8e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.notizpad",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "667391723468-76ajq4ri8k7odrotjsk9gn1akjkcnolj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuORL1dqV1q-IeK5oJBnUantSEoPVb1aw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "667391723468-76ajq4ri8k7odrotjsk9gn1akjkcnolj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
