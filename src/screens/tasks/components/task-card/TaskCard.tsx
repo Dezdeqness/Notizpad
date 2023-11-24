@@ -1,6 +1,6 @@
 import React from 'react';
 import { TaskCardTypes } from './task-card.types';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Platform } from 'react-native';
 import { styles } from './task-card.styles';
 import { Delete, Edit, Location } from '../../../../../assets';
 import { Icon } from '../../../../components/icon/Icon';
@@ -23,7 +23,10 @@ export const TaskCard: React.FC<TaskCardTypes> = ({
   return (
     <View style={styles.container}>
       <View style={styles.column}>
-        <View style={styles.row}>
+        <View style={[styles.row, {
+          alignItems: 'center',
+          justifyContent: 'center'
+        }]}>
           <View
             style={[
               styles.mark,
@@ -32,13 +35,29 @@ export const TaskCard: React.FC<TaskCardTypes> = ({
               },
             ]}
           />
+          {
+            Platform.OS == 'ios'
+            ? <CheckBox
+                boxType={'square'}
+                disabled={false}
+                style={{
+                  height: 16,
+                  width: 16,
+                  alignContent: 'center',
+                  marginHorizontal: 8,
+                }}
 
-          <CheckBox
-            disabled={false}
-            tintColors={{ true: '#6871EE' }}
-            value={isCompleted}
-            onValueChange={() => onCheckboxChanged(id)}
-          />
+                tintColors={{ true: '#6871EE' }}
+                value={isCompleted}
+                onValueChange={() => onCheckboxChanged(id)}
+              />
+            : <CheckBox
+                disabled={false}
+                tintColors={{ true: '#6871EE' }}
+                value={isCompleted}
+                onValueChange={() => onCheckboxChanged(id)}
+              />
+          }
         </View>
       </View>
 
