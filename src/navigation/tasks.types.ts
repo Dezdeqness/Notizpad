@@ -1,22 +1,16 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 export type RootStackParamList = {
-  TasksRoot: undefined;
-  Map: undefined;
-  Generator: undefined;
+  Tabs: undefined;
+  ManageTask: { id?: number };
 };
 
-export type TasksStackParamList = {
-  Tasks: undefined;
-  ManageTask: { id: number };
-};
-
-export type TasksScreenProps = NativeStackScreenProps<
-  TasksStackParamList,
-  'Tasks'
+export type TabsScreenProps = NativeStackScreenProps<
+  RootStackParamList,
+  'Tabs'
 >;
 
 export type ManageTaskScreenProps = NativeStackScreenProps<
-  TasksStackParamList,
+  RootStackParamList,
   'ManageTask'
 >;

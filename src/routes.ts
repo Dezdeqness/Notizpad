@@ -1,8 +1,8 @@
 export enum Routes {
   LOGIN = 'Login',
   REGISTRATION = 'Registration',
+  TABS = 'Tabs',
   TASKS = 'Tasks',
-  TASKS_ROOT = 'TasksRoot',
   MANAGE_TASK = 'ManageTask',
   MAP = 'Map',
   GENERATOR = 'Generator',

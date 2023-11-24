@@ -1,13 +1,15 @@
-import { FlatList, StatusBar, Text, View } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import React, { useMemo, useState } from 'react';
 import { PrimaryButton, SelectableButton } from '../../components';
 import { TaskCard } from './components/';
 import { taskData } from '../../mock/task-list';
 import { FilterStatus } from '../../model/task';
 import { styles } from './tasks.styles';
-import { TasksScreenProps } from '../../navigation/tasks.types';
+import { RootStackParamList } from '../../navigation/tasks.types';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
-export const Tasks: React.FC<TasksScreenProps> = ({ navigation }) => {
+export const Tasks: React.FC = () => {
   const [tasks, setList] = useState(taskData);
   const [status, setStatus] = useState(FilterStatus.All);
 
@@ -21,7 +23,7 @@ export const Tasks: React.FC<TasksScreenProps> = ({ navigation }) => {
         return tasks;
     }
   };
-
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const filteredList = useMemo(() => filterTasks(), [tasks, status]);
 
   return (
@@ -49,9 +51,7 @@ export const Tasks: React.FC<TasksScreenProps> = ({ navigation }) => {
           <Text style={styles.title}>Hello, there</Text>
           <PrimaryButton
             onPress={() => {
-              navigation.navigate('ManageTask', {
-                id: -1,
-              });
+              navigation.navigate('ManageTask', {});
             }}
             backgroundColor={'#F8D94F'}
           >
