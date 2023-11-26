@@ -8,6 +8,8 @@ import MapSelected from './icons/ic_map_selected.svg';
 import MapUnselected from './icons/ic_map_unselected.svg';
 import GeneratorSelected from './icons/ic_generator_selected.svg';
 import GeneratorUnselected from './icons/ic_generator_unselected.svg';
+import Back from './icons/ic_back.svg';
+import TaskPhotoPlaceholder from './icons/ic_photo_placeholder.svg';
 
 export {
   Delete,
@@ -20,4 +22,6 @@ export {
   MapUnselected,
   GeneratorSelected,
   GeneratorUnselected,
+  Back,
+  TaskPhotoPlaceholder,
 };
