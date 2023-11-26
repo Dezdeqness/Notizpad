@@ -33,6 +33,8 @@ local.properties
 .cxx/
 *.keystore
 !debug.keystore
+yarn.lock
+package-lock.json
 
 # node.js
 #
