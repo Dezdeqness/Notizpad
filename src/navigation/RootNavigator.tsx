@@ -12,7 +12,7 @@ export const RootNavigator: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name={'Tabs'} component={TabNavigator} />
+        <Stack.Screen name={Routes.TABS} component={TabNavigator} />
         <Stack.Screen name={Routes.MANAGE_TASK} component={ManageTask} />
       </Stack.Navigator>
     </NavigationContainer>

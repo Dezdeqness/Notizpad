@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { Pressable, View } from 'react-native';
 import { IconTypes } from './icon.types';
 import { styles } from './icon.styles';
 
-export const Icon: React.FC<IconTypes> = ({
+export const Icon: React.FC<PropsWithChildren<IconTypes>> = ({
   backgroundColor,
   children,
   ...rest
@@ -11,12 +11,13 @@ export const Icon: React.FC<IconTypes> = ({
   return (
     <View style={styles.container}>
       <Pressable
-        onPress={() => rest.onPress}
+        {...rest}
+        onPress={rest.onPress}
         android_ripple={{ color: 'grey' }}
         style={[
           styles.pressable,
           {
-            backgroundColor: '#F8FAFF',
+            backgroundColor: backgroundColor,
           },
         ]}
       >

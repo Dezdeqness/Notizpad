@@ -10,6 +10,7 @@ export enum TaskPriority {
   Urgent = '#DF7E8D',
   Regular = '#F8D94F',
   Low = '#77D4BD',
+  None = '',
 }
 
 export enum FilterStatus {
