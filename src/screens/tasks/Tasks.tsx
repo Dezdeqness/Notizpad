@@ -10,7 +10,22 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 export const Tasks: React.FC = () => {
-  const [tasks, setList] = useState(taskData);
+  const tasks = useSelector((state: RootState) => state.tasks.tasks);
+  const [isLoading, setLoading] = useState(false);
+  const dispatch: AppDispatch = useDispatch();
+
+  const fetchTasks = () => {
+    setLoading(true);
+
+    dispatch(loadTasks()).finally(() => {
+      setLoading(false);
+    });
+  };
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
+
   const [status, setStatus] = useState(FilterStatus.All);
 
   const filterTasks = () => {
