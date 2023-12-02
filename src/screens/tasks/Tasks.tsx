@@ -1,13 +1,17 @@
 import { FlatList, Text, View } from 'react-native';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { PrimaryButton, SelectableButton } from '../../components';
 import { TaskCard } from './components/';
-import { taskData } from '../../mock/task-list';
 import { FilterStatus } from '../../model/task';
 import { styles } from './tasks.styles';
 import { RootStackParamList } from '../../navigation/tasks.types';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { Routes } from '../../routes';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store';
+import { loadTasks, toggleTaskStatus } from '../../features/tasks/tasks-slice';
+import { Circle } from 'react-native-progress';
 
 export const Tasks: React.FC = () => {
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
@@ -66,7 +70,7 @@ export const Tasks: React.FC = () => {
           <Text style={styles.title}>Hello, there</Text>
           <PrimaryButton
             onPress={() => {
-              navigation.navigate('ManageTask', {});
+              navigation.navigate(Routes.MANAGE_TASK, {});
             }}
             backgroundColor={'#F8D94F'}
           >
@@ -119,39 +123,44 @@ export const Tasks: React.FC = () => {
         />
       </View>
       <Text style={styles.tasksTitle}>Your Tasks</Text>
-      <FlatList
-        style={{
-          margin: 16,
-        }}
-        data={filteredList}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => (
-          <View style={{ marginBottom: 6 }}>
-            <TaskCard
-              id={item.id}
-              title={item.title}
-              location={item.location}
-              isCompleted={item.isCompleted}
-              priority={item.priority}
-              onCheckboxChanged={id => {
-                setList(prev =>
-                  prev.map(value => {
-                    if (value.id == id) {
-                      return {
-                        ...value,
-                        isCompleted: !value.isCompleted,
-                      };
-                    }
-                    return {
-                      ...value,
-                    };
-                  }),
-                );
-              }}
-            />
-          </View>
-        )}
-      />
+      {isLoading ? (
+        <View
+          style={{
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Circle
+            size={40}
+            borderWidth={4}
+            indeterminate={true}
+            color={'#6871EE'}
+          />
+        </View>
+      ) : (
+        <FlatList
+          style={{
+            margin: 16,
+          }}
+          data={filteredList}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => (
+            <View style={{ marginBottom: 6 }}>
+              <TaskCard
+                id={item.id}
+                title={item.title}
+                location={item.location}
+                isCompleted={item.isCompleted}
+                priority={item.priority}
+                onCheckboxChanged={id => {
+                  dispatch(toggleTaskStatus(id));
+                }}
+              />
+            </View>
+          )}
+        />
+      )}
     </View>
   );
 };
