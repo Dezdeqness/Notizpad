@@ -4,6 +4,7 @@ export interface Task {
   location: string;
   isCompleted: boolean;
   priority: TaskPriority;
+  imageUri: string;
 }
 
 export enum TaskPriority {

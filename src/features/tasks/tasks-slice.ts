@@ -11,11 +11,13 @@ export interface EditTaskPayload {
   id: string;
   title: string;
   priority: TaskPriority;
+  imageUri: string;
 }
 
 export interface AddTaskPayload {
   title: string;
   priority: TaskPriority;
+  imageUri: string;
 }
 
 const initialState: TasksState = {
@@ -38,6 +40,7 @@ export const tasksSlice = createSlice({
         location: '',
         isCompleted: false,
         priority: action.payload.priority,
+        imageUri: action.payload.imageUri,
       });
     },
     removeTask: (state, action: PayloadAction<string>) => {
@@ -54,6 +57,7 @@ export const tasksSlice = createSlice({
       if (task) {
         task.title = action.payload.title;
         task.priority = action.payload.priority;
+        task.imageUri = action.payload.imageUri;
       }
     },
   },

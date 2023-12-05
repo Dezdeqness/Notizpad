@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Platform, Text, TextInput, View } from 'react-native';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { Image, Platform, Text, TextInput, View } from 'react-native';
 import { ManageTaskScreenProps } from '../../navigation/tasks.types';
 import { PrimaryButton, Toolbar } from '../../components';
 import { TaskPhotoPlaceholder } from '../../../assets';
@@ -12,45 +12,103 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { addTask, editTask } from '../../features/tasks/tasks-slice';
 import { useNavigation } from '@react-navigation/native';
+import { launchImageLibrary } from 'react-native-image-picker';
+import { ImageLibraryOptions } from 'react-native-image-picker/src/types';
 
 export const ManageTask: React.FC<ManageTaskScreenProps> = ({ route }) => {
+  const id = route.params.id;
+
+  const tasks = useSelector((state: RootState) => state.tasks.tasks);
+
   const [selectedFilter, setSelectedFilter] = useState(TaskPriority.None);
   const [taskName, setTaskName] = useState('');
   const dispatch = useDispatch();
   const navigation = useNavigation();
+  const isSaveEnabled = useMemo(
+    () => selectedFilter !== TaskPriority.None && taskName.length > 0,
+    [selectedFilter, taskName],
+  );
+  const [imageUri, setImageUri] = useState<string>('');
+  const [buttonTitle, setButtonTitle] = useState<string>('+ Add photo');
 
-  const tasks = useSelector((state: RootState) => state.tasks.tasks);
-
-  const id = route.params.id;
   useEffect(() => {
     if (id) {
       const task = tasks.find(item => item.id === id);
       if (task) {
         setTaskName(task.title);
         setSelectedFilter(task.priority);
+        const taskImageUri = task.imageUri;
+        if (taskImageUri) {
+          setImageUri(taskImageUri);
+        }
       }
     }
   }, []);
 
-  const isSaveEnabled =
-    selectedFilter !== TaskPriority.None && taskName.length > 0;
+  useEffect(() => {
+    setButtonTitle(imageUri ? '+ Change photo' : '+ Add photo');
+  }, [imageUri]);
+
+  const onImageGalleryOptionClick = useCallback(() => {
+    const options: ImageLibraryOptions = {
+      includeBase64: true,
+      mediaType: 'photo',
+    };
+    launchImageLibrary(options, response => {
+      if (response.didCancel) {
+        /* empty */
+      } else if (response.errorCode) {
+        /* empty */
+      } else {
+        const asset = response.assets?.[0];
+        if (asset) {
+          const template = 'data:image/*;base64,';
+          setImageUri(template + asset.base64);
+        }
+      }
+    }).then();
+  }, []);
 
   return (
     <View>
       <View style={styles.containerToolbar}>
         <Toolbar title={'Add new task'} />
       </View>
-      <View>
-        <View>
-          <TaskPhotoPlaceholder
-            width={'100%'}
-            height={122}
-            preserveAspectRatio="xMidYMid slice"
-          />
+      <View
+        style={{
+          padding: 16,
+        }}
+      >
+        <View
+          style={{
+            overflow: 'hidden',
+            borderRadius: 8,
+          }}
+        >
+          {imageUri === '' ? (
+            <TaskPhotoPlaceholder
+              width={'100%'}
+              height={160}
+              preserveAspectRatio="xMidYMid slice"
+            />
+          ) : (
+            <>
+              <Image
+                height={160}
+                source={{ uri: imageUri }}
+                resizeMode={'cover'}
+              />
+            </>
+          )}
         </View>
         <View style={styles.containerAddTaskButton}>
-          <PrimaryButton onPress={() => {}} backgroundColor={'#F8D94F'}>
-            <Text style={styles.addTaskButtonText}>+ Add photo</Text>
+          <PrimaryButton
+            onPress={() => {
+              onImageGalleryOptionClick();
+            }}
+            backgroundColor={'#F8D94F'}
+          >
+            <Text style={styles.addTaskButtonText}>{buttonTitle}</Text>
           </PrimaryButton>
         </View>
       </View>
@@ -142,10 +200,12 @@ export const ManageTask: React.FC<ManageTaskScreenProps> = ({ route }) => {
                       id: id,
                       title: taskName,
                       priority: selectedFilter,
+                      imageUri: imageUri,
                     })
                   : addTask({
                       title: taskName,
                       priority: selectedFilter,
+                      imageUri: imageUri,
                     }),
               );
               navigation.goBack();
